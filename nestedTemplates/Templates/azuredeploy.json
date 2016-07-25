@@ -3,8 +3,13 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
     },
-    "variables": {
-    },
+  "variables": {
+    "template": {
+      "base": "https://raw.githubusercontent.com/marcvaneijk/arm/master/000-foundation/examples/nested-sharing-state/",
+      "nested1": "shared1.json",
+      "nested2": "shared2.json"
+    }
+  },
     "resources": [
     ],
     "outputs": {

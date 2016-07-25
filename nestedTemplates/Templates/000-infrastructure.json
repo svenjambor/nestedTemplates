@@ -1,0 +1,72 @@
+﻿{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+    },
+  "variables": {
+    "NetworkAddressRange": "10.100.0.0/16",
+    "NetworkShared": "SharedSubnet",
+    "NetworkSharedAddressRange": "10.100.0.0/24",
+    "storageBasicName": "[tolower(substring(concat('storagebasic', uniqueString(resourceGroup().id)),0,23))]",
+    "storageBasicType": "Standard_LRS",
+    "storagePremiumName": "[tolower(substring(concat('storagepremium', uniqueString(resourceGroup().id)),0,23))]",
+    "storagePremiumType": "Premium_LRS"
+  },
+    "resources": [
+        {
+            "name": "Network",
+            "type": "Microsoft.Network/virtualNetworks",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [ ],
+            "tags": {
+                "displayName": "Network"
+            },
+            "properties": {
+                "addressSpace": {
+                  "addressPrefixes": [
+                    "[variables('NetworkAddressRange')]"
+                  ]
+                },
+                "subnets": [
+                  {
+                    "name": "[variables('NetworkShared')]",
+                    "properties": {
+                      "addressPrefix": "[variables('NetworkSharedAddressRange')]"
+                    }
+                  }
+                ]
+            }
+        },
+        {
+            "name": "[variables('storagebasicName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [ ],
+            "tags": {
+              "displayName": "Basic Storage Account",
+              "environment": "shared"
+              },
+          "properties": {
+            "accountType": "[variables('storageBasicType')]"
+          }
+        },
+        {
+            "name": "[variables('storagepremiumName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "location": "[resourceGroup().location]",
+            "apiVersion": "2015-06-15",
+            "dependsOn": [ ],
+            "tags": {
+               "displayName": "Premium Storage Account",
+               "environment": "shared"
+            },
+            "properties": {
+              "accountType": "[variables('storagePremiumType')]"
+            }
+        }
+    ],
+    "outputs": {
+    }
+}
