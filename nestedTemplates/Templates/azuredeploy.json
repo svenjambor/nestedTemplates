@@ -17,7 +17,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(variables('template').base, 'nested/', variables('template').infraTemplate)]",
+          "uri": "[concat(variables('template').base, variables('template').infraTemplate)]",
           "contentVersion": "1.0.0.0"
         }
       }
