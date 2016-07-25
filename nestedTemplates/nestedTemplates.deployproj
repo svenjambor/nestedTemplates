@@ -33,8 +33,5 @@
     <Content Include="Templates\azuredeploy.parameters.json" />
     <None Include="Templates\nested\000-infrastructure.json" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DSC\" />
-  </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>
