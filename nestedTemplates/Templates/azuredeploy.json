@@ -17,7 +17,8 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "[concat(variables('template').base, variables('template').infraTemplate)]",
+          "uri": "https://raw.githubusercontent.com/svenjambor/nestedTemplates/master/nestedTemplates/Templates/000-infrastructure.json",
+          //"uri": "[concat(variables('template').base, variables('template').infraTemplate)]",
           "contentVersion": "1.0.0.0"
         }
       }
