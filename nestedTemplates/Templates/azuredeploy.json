@@ -5,12 +5,24 @@
     },
   "variables": {
     "template": {
-      "base": "https://raw.githubusercontent.com/marcvaneijk/arm/master/000-foundation/examples/nested-sharing-state/",
-      "nested1": "shared1.json",
-      "nested2": "shared2.json"
+      "base": "https: //raw.githubusercontent.com/svenjambor/nestedTemplates/master/nestedTemplates/Templates/",
+      "infraTemplate": "000-infrastructure.json"
     }
   },
-    "resources": [
+  "resources": [
+    {
+      "name": "myNestedTemplate",
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(variables('template').base, 'nested/', variables('template').infraTemplate)]",
+          "contentVersion": "1.0.0.0"
+        }
+      }
+    }
+  ]
     ],
     "outputs": {
     }
